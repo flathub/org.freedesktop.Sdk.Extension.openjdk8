@@ -121,7 +121,7 @@
                     "type": "git",
                     "skip-arches": ["aarch64"],
                     "url": "https://github.com/AdoptOpenJDK/openjdk-jdk8u.git",
-                    "branch": "jdk8u192-b12"
+                    "branch": "jdk8u202-b08"
                 },
                 {
                     "type": "git",
