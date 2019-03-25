@@ -166,7 +166,7 @@
                     "commands": [
                         "mkdir -p /app/jre",
                         "cd /usr/lib/sdk/openjdk8/jvm/java-8-openjdk",
-                        "cp * /app/jre",
+                        "cp -ra * /app/jre",
                         "rm -rf /app/jre/src.zip /app/jre/include /app/jre/demo /app/jre/sample"
                     ],
                     "dest-filename": "install.sh"
@@ -176,7 +176,7 @@
                     "commands": [
                         "mkdir -p /app/jdk",
                         "cd /usr/lib/sdk/openjdk8/jvm/java-8-openjdk",
-                        "cp * /app/jdk"
+                        "cp -ra * /app/jdk"
                     ],
                     "dest-filename": "installjdk.sh"
                 },
