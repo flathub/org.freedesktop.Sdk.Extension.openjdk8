@@ -1,3 +1,4 @@
 {
-    "skip-arches": ["arm"]
+    "skip-arches": ["arm"],
+    "end-of-life": "Old version based on 1.6 runtime. Please update your app to use a more recent runtime."
 }
