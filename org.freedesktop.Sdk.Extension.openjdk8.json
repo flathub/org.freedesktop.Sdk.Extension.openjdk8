@@ -106,7 +106,11 @@
                 "--with-giflib=system",
                 "--with-extra-cxxflags=-O2 -g -Wno-error -std=gnu++98 -fno-delete-null-pointer-checks -fno-lifetime-dse",
                 "--with-extra-cflags=-O2 -g -fstack-protector-strong -Wno-error -fno-delete-null-pointer-checks -fno-lifetime-dse",
-                "--with-extra-ldflags=-Wl,-z,relro -Wl,-z,now"
+                "--with-extra-ldflags=-Wl,-z,relro -Wl,-z,now",
+                "--with-company-name=AdoptOpenJDK",
+                "--with-milestone=adoptopenjdk",
+                "--with-update-version=222",
+                "--with-build-number=b10"
             ],
             "make-args": [
                 "JAVAC_FLAGS=-g",
@@ -189,7 +193,7 @@
                 }
             ],
             "build-commands": [
-                "(cd /usr/lib/sdk/openjdk8/jvm && ln -s openjdk-1.8.0-internal java-8-openjdk)",
+                "(cd /usr/lib/sdk/openjdk8/jvm && ln -s openjdk-1.8.0* java-8-openjdk)",
                 "cp enable.sh install.sh installjdk.sh /usr/lib/sdk/openjdk8/"
             ]
         },
