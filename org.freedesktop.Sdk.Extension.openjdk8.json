@@ -124,13 +124,13 @@
                     "type": "git",
                     "skip-arches": ["aarch64"],
                     "url": "https://github.com/AdoptOpenJDK/openjdk-jdk8u.git",
-                    "branch": "jdk8u222-b10"
+                    "branch": "jdk8u232-b09"
                 },
                 {
                     "type": "git",
                     "only-arches": ["aarch64"],
                     "url": "https://github.com/AdoptOpenJDK/openjdk-aarch64-jdk8u.git",
-                    "branch": "aarch64-shenandoah-jdk8u222-b10"
+                    "branch": "aarch64-shenandoah-jdk8u232-b09"
                 },
                 {
                     "type": "shell",
