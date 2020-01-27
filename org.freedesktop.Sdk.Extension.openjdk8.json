@@ -107,7 +107,6 @@
                 "--with-extra-cxxflags=-O2 -g -Wno-error -std=gnu++98 -fno-delete-null-pointer-checks -fno-lifetime-dse",
                 "--with-extra-cflags=-O2 -g -fstack-protector-strong -Wno-error -fno-delete-null-pointer-checks -fno-lifetime-dse",
                 "--with-extra-ldflags=-Wl,-z,relro -Wl,-z,now",
-                "--with-company-name=AdoptOpenJDK",
                 "--with-milestone=adoptopenjdk",
                 "--with-update-version=242",
                 "--with-build-number=b08"
