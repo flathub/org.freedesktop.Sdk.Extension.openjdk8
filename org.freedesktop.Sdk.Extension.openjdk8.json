@@ -168,9 +168,8 @@
                     "type": "script",
                     "commands": [
                         "mkdir -p /app/jre",
-                        "cd /usr/lib/sdk/openjdk8/jvm/java-8-openjdk",
-                        "cp -ra * /app/jre",
-                        "rm -rf /app/jre/src.zip /app/jre/include /app/jre/demo /app/jre/sample"
+                        "cp -ar /usr/lib/sdk/openjdk8/jvm/java-8-openjdk/jre/{bin,lib} /app/jre",
+                        "find /app/jre -type f -name '*.diz' -delete"
                     ],
                     "dest-filename": "install.sh"
                 },
