@@ -57,8 +57,8 @@ modules:
   - "--with-extra-ldflags=-Wl,-z,relro -Wl,-z,now"
   - "--with-company-name=AdoptOpenJDK"
   - "--with-milestone=adoptopenjdk"
-  - "--with-update-version=252"
-  - "--with-build-number=b09"
+  - "--with-update-version=265"
+  - "--with-build-number=b01"
   make-args:
   - JAVAC_FLAGS=-g
   - LOG=trace
@@ -70,12 +70,12 @@ modules:
     skip-arches:
     - aarch64
     url: https://github.com/AdoptOpenJDK/openjdk-jdk8u.git
-    branch: jdk8u252-b09
+    branch: jdk8u265-b01
   - type: git
     only-arches:
     - aarch64
     url: https://github.com/AdoptOpenJDK/openjdk-aarch64-jdk8u.git
-    branch: aarch64-shenandoah-jdk8u252-b09
+    branch: aarch64-shenandoah-jdk8u265-b01
   - type: shell
     commands:
     - chmod a+x configure
