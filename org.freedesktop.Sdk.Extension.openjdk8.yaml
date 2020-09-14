@@ -1,25 +1,25 @@
 ---
 id: org.freedesktop.Sdk.Extension.openjdk8
-branch: "19.08"
+branch: '19.08'
 runtime: org.freedesktop.Sdk
-runtime-version: "19.08"
+runtime-version: '19.08'
 build-extension: true
 sdk: org.freedesktop.Sdk
 separate-locales: false
 appstream-compose: false
 cleanup:
-- "/share/info"
-- "/share/man"
+- /share/info
+- /share/man
 build-options:
   no-debuginfo: true
   strip: true
-  prefix: "/usr/lib/sdk/openjdk8"
+  prefix: /usr/lib/sdk/openjdk8
   env:
-    V: "1"
+    V: '1'
 modules:
 - name: bootstrap-java
   cleanup:
-  - "*"
+  - '*'
   buildsystem: simple
   sources:
   - type: archive
@@ -40,18 +40,18 @@ modules:
   buildsystem: autotools
   no-parallel-make: true
   config-opts:
-  - "--with-boot-jdk=/usr/lib/sdk/openjdk8/bootstrap-java"
-  - "--with-jvm-variants=server"
-  - "--with-debug-level=release"
-  - "--enable-unlimited-crypto"
-  - "--with-zlib=system"
-  - "--with-giflib=system"
-  - "--with-extra-cxxflags=-O2 -g -Wno-error -std=gnu++98 -fno-delete-null-pointer-checks -fno-lifetime-dse"
-  - "--with-extra-cflags=-O2 -g -fstack-protector-strong -Wno-error -fno-delete-null-pointer-checks -fno-lifetime-dse"
-  - "--with-extra-ldflags=-Wl,-z,relro -Wl,-z,now"
-  - "--with-milestone=adoptopenjdk"
-  - "--with-update-version=265"
-  - "--with-build-number=b01"
+  - --with-boot-jdk=/usr/lib/sdk/openjdk8/bootstrap-java
+  - --with-jvm-variants=server
+  - --with-debug-level=release
+  - --enable-unlimited-crypto
+  - --with-zlib=system
+  - --with-giflib=system
+  - --with-extra-cxxflags=-O2 -g -Wno-error -std=gnu++98 -fno-delete-null-pointer-checks -fno-lifetime-dse
+  - --with-extra-cflags=-O2 -g -fstack-protector-strong -Wno-error -fno-delete-null-pointer-checks -fno-lifetime-dse
+  - --with-extra-ldflags=-Wl,-z,relro -Wl,-z,now
+  - --with-milestone=adoptopenjdk
+  - --with-update-version=265
+  - --with-build-number=b01
   build-options:
     arch:
       aarch64:
@@ -83,7 +83,7 @@ modules:
 - name: maven
   buildsystem: simple
   cleanup:
-  - "*.cmd"
+  - '*.cmd'
   sources:
   - type: file
     url: http://archive.apache.org/dist/maven/maven-3/3.6.3/binaries/apache-maven-3.6.3-bin.tar.gz
@@ -115,7 +115,7 @@ modules:
     - export PATH=$PATH:/usr/lib/sdk/openjdk8/bin
     dest-filename: enable.sh
   build-commands:
-  - "(cd /usr/lib/sdk/openjdk8/jvm && ln -s openjdk-1.8.0* java-8-openjdk)"
+  - (cd /usr/lib/sdk/openjdk8/jvm && ln -s openjdk-1.8.0* java-8-openjdk)
   - cp enable.sh install.sh installjdk.sh /usr/lib/sdk/openjdk8/
 - name: appdata
   buildsystem: simple
