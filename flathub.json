@@ -1,5 +1,5 @@
 {
-    "skip-arches": ["arm"],
+    "skip-arches": ["arm", "i386"],
     "skip-icons-check": "true",
     "end-of-life": "Old version based on 18.08 runtime. Please update your app to use a more recent runtime."
 }
