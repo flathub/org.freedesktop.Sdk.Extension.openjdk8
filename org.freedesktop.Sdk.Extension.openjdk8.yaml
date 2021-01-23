@@ -50,15 +50,17 @@ modules:
   - --with-extra-cflags=-O2 -g -fstack-protector-strong -Wno-error -fno-delete-null-pointer-checks -fno-lifetime-dse
   - --with-extra-ldflags=-Wl,-z,relro -Wl,-z,now
   - --with-milestone=adoptopenjdk
-  - --with-update-version=282
-  - --with-build-number=b08
   build-options:
     arch:
       aarch64:
         config-opts:
+          - --with-update-version=275
+          - --with-build-number=b01
           - --with-vendor-name=AdoptOpenJDK
       x86_64:
         config-opts:
+          - --with-update-version=282
+          - --with-build-number=b08
           - --with-company-name=AdoptOpenJDK
   make-args:
   - JAVAC_FLAGS=-g
@@ -76,7 +78,7 @@ modules:
     only-arches:
     - aarch64
     url: https://github.com/AdoptOpenJDK/openjdk-aarch64-jdk8u.git
-    branch: aarch64-shenandoah-jdk8u282-b08
+    branch: aarch64-shenandoah-jdk8u275-b01
   - type: shell
     commands:
     - chmod a+x configure
