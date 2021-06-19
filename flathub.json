@@ -1,4 +1,5 @@
 {
     "skip-arches": ["arm"],
-    "skip-icons-check": "true"
+    "skip-icons-check": "true",
+    "end-of-life": "Old version based on 19.08 runtime. Please update your app to use a more recent runtime."
 }
