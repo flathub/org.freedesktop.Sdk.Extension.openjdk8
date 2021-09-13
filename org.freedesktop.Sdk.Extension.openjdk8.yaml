@@ -27,14 +27,14 @@ modules:
     dest: bootstrap-java
     only-arches:
     - aarch64
-    url: https://github.com/AdoptOpenJDK/openjdk8-binaries/releases/download/jdk8u265-b01/OpenJDK8U-jdk_aarch64_linux_hotspot_8u265b01.tar.gz
-    sha256: 87d16dac293d2a9abbb559a277bfaded702f28d1bfdc526f8613bb9cfed84a12
+    url: https://github.com/adoptium/temurin8-binaries/releases/download/jdk8u302-b08/OpenJDK8U-jdk_aarch64_linux_hotspot_8u302b08.tar.gz
+    sha256: f287cdc2a688c2df247ea0d8bfe2863645b73848e4e5c35b02a8a3d2d6b69551
   - type: archive
     dest: bootstrap-java
     only-arches:
     - x86_64
-    url: https://github.com/AdoptOpenJDK/openjdk8-binaries/releases/download/jdk8u265-b01/OpenJDK8U-jdk_x64_linux_hotspot_8u265b01.tar.gz
-    sha256: 1285da6278f2d38a790a21148d7e683f20de0799c44b937043830ef6b57f58c4
+    url: https://github.com/adoptium/temurin8-binaries/releases/download/jdk8u302-b08/OpenJDK8U-jdk_x64_linux_hotspot_8u302b08.tar.gz
+    sha256: cc13f274becf9dd5517b6be583632819dfd4dd81e524b5c1b4f406bdaf0e063a
   build-commands:
   - mv bootstrap-java $FLATPAK_DEST/
 - name: java
@@ -51,8 +51,8 @@ modules:
   - --with-extra-cflags=-O2 -g -fstack-protector-strong -Wno-error -fno-delete-null-pointer-checks -fno-lifetime-dse -fcommon
   - --with-extra-ldflags=-Wl,-z,relro -Wl,-z,now
   - --with-milestone=fcs
-  - --with-update-version=292
-  - --with-build-number=b10
+  - --with-update-version=302
+  - --with-build-number=b08
   make-args:
   - JAVAC_FLAGS=-g
   - LOG=trace
@@ -61,15 +61,8 @@ modules:
   - images
   sources:
   - type: git
-    skip-arches:
-    - aarch64
-    url: https://github.com/AdoptOpenJDK/openjdk-jdk8u.git
-    branch: jdk8u292-b10
-  - type: git
-    only-arches:
-    - aarch64
-    url: https://github.com/AdoptOpenJDK/openjdk-aarch64-jdk8u.git
-    branch: aarch64-shenandoah-jdk8u292-b10
+    url: https://github.com/adoptium/jdk8u.git
+    branch: jdk8u302-b08
   - type: shell
     commands:
     - chmod a+x configure
