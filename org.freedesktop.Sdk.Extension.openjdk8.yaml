@@ -1,16 +1,14 @@
----
 id: org.freedesktop.Sdk.Extension.openjdk8
 branch: '20.08'
 runtime: org.freedesktop.Sdk
 runtime-version: '20.08'
-
 build-extension: true
 sdk: org.freedesktop.Sdk
 separate-locales: false
 appstream-compose: false
 cleanup:
-- /share/info
-- /share/man
+  - /share/info
+  - /share/man
 build-options:
   no-debuginfo: true
   strip: true
@@ -18,97 +16,97 @@ build-options:
   env:
     V: '1'
 modules:
-- name: bootstrap-java
-  cleanup:
-  - '*'
-  buildsystem: simple
-  sources:
-  - type: archive
-    dest: bootstrap-java
-    only-arches:
-    - aarch64
-    url: https://github.com/adoptium/temurin8-binaries/releases/download/jdk8u302-b08/OpenJDK8U-jdk_aarch64_linux_hotspot_8u302b08.tar.gz
-    sha256: f287cdc2a688c2df247ea0d8bfe2863645b73848e4e5c35b02a8a3d2d6b69551
-  - type: archive
-    dest: bootstrap-java
-    only-arches:
-    - x86_64
-    url: https://github.com/adoptium/temurin8-binaries/releases/download/jdk8u302-b08/OpenJDK8U-jdk_x64_linux_hotspot_8u302b08.tar.gz
-    sha256: cc13f274becf9dd5517b6be583632819dfd4dd81e524b5c1b4f406bdaf0e063a
-  build-commands:
-  - mv bootstrap-java $FLATPAK_DEST/
-- name: java
-  buildsystem: autotools
-  no-parallel-make: true
-  config-opts:
-  - --with-boot-jdk=/usr/lib/sdk/openjdk8/bootstrap-java
-  - --with-jvm-variants=server
-  - --with-debug-level=release
-  - --enable-unlimited-crypto
-  - --with-zlib=system
-  - --with-giflib=system
-  - --with-extra-cxxflags=-O2 -g -Wno-error -std=gnu++98 -fno-delete-null-pointer-checks -fno-lifetime-dse -fcommon
-  - --with-extra-cflags=-O2 -g -fstack-protector-strong -Wno-error -fno-delete-null-pointer-checks -fno-lifetime-dse -fcommon
-  - --with-extra-ldflags=-Wl,-z,relro -Wl,-z,now
-  - --with-milestone=fcs
-  - --with-update-version=322
-  - --with-build-number=b06
-  make-args:
-  - JAVAC_FLAGS=-g
-  - LOG=trace
-  - WARNINGS_ARE_ERRORS=-Wno-error
-  - CFLAGS_WARNINGS_ARE_ERRORS=-Wno-error
-  - images
-  sources:
-  - type: git
-    url: https://github.com/adoptium/jdk8u.git
-    tag: jdk8u322-b06
-  - type: shell
-    commands:
-    - chmod a+x configure
-- name: maven
-  buildsystem: simple
-  cleanup:
-  - '*.cmd'
-  sources:
-  - type: file
-    url: http://archive.apache.org/dist/maven/maven-3/3.8.4/binaries/apache-maven-3.8.4-bin.tar.gz
-    dest-filename: apache-maven-bin.tar.gz
-    sha512: a9b2d825eacf2e771ed5d6b0e01398589ac1bfa4171f36154d1b5787879605507802f699da6f7cfc80732a5282fd31b28e4cd6052338cbef0fa1358b48a5e3c8
-  build-commands:
-  - mkdir -p $FLATPAK_DEST/maven
-  - tar xf apache-maven-bin.tar.gz --strip-components=1 --exclude=jansi-native --directory=$FLATPAK_DEST/maven
-  - ln -s $FLATPAK_DEST/maven/bin/mvn $FLATPAK_DEST/maven/bin/mvnDebug $FLATPAK_DEST/bin
-- name: scripts
-  buildsystem: simple
-  sources:
-  - type: script
-    commands:
-    - mkdir -p /app/jre
-    - cd /usr/lib/sdk/openjdk8/jvm/java-8-openjdk
-    - cp -ra * /app/jre
-    - rm -rf /app/jre/src.zip /app/jre/include /app/jre/demo /app/jre/sample
-    dest-filename: install.sh
-  - type: script
-    commands:
-    - mkdir -p /app/jdk
-    - cd /usr/lib/sdk/openjdk8/jvm/java-8-openjdk
-    - cp -ra * /app/jdk
-    dest-filename: installjdk.sh
-  - type: script
-    commands:
-    - export JAVA_HOME=/usr/lib/sdk/openjdk8/jvm/java-8-openjdk
-    - export PATH=$PATH:/usr/lib/sdk/openjdk8/bin
-    dest-filename: enable.sh
-  build-commands:
-  - (cd /usr/lib/sdk/openjdk8/jvm && ln -s openjdk-1.8.0* java-8-openjdk)
-  - cp enable.sh install.sh installjdk.sh /usr/lib/sdk/openjdk8/
-- name: appdata
-  buildsystem: simple
-  build-commands:
-  - mkdir -p ${FLATPAK_DEST}/share/appdata
-  - cp org.freedesktop.Sdk.Extension.openjdk8.appdata.xml ${FLATPAK_DEST}/share/appdata
-  - appstream-compose --basename=org.freedesktop.Sdk.Extension.openjdk8 --prefix=${FLATPAK_DEST} --origin=flatpak org.freedesktop.Sdk.Extension.openjdk8
-  sources:
-  - type: file
-    path: org.freedesktop.Sdk.Extension.openjdk8.appdata.xml
+  - name: bootstrap-java
+    cleanup:
+      - '*'
+    buildsystem: simple
+    sources:
+      - type: archive
+        dest: bootstrap-java
+        only-arches:
+          - aarch64
+        url: https://github.com/adoptium/temurin8-binaries/releases/download/jdk8u302-b08/OpenJDK8U-jdk_aarch64_linux_hotspot_8u302b08.tar.gz
+        sha256: f287cdc2a688c2df247ea0d8bfe2863645b73848e4e5c35b02a8a3d2d6b69551
+      - type: archive
+        dest: bootstrap-java
+        only-arches:
+          - x86_64
+        url: https://github.com/adoptium/temurin8-binaries/releases/download/jdk8u302-b08/OpenJDK8U-jdk_x64_linux_hotspot_8u302b08.tar.gz
+        sha256: cc13f274becf9dd5517b6be583632819dfd4dd81e524b5c1b4f406bdaf0e063a
+    build-commands:
+      - mv bootstrap-java $FLATPAK_DEST/
+  - name: java
+    buildsystem: autotools
+    no-parallel-make: true
+    config-opts:
+      - --with-boot-jdk=/usr/lib/sdk/openjdk8/bootstrap-java
+      - --with-jvm-variants=server
+      - --with-debug-level=release
+      - --enable-unlimited-crypto
+      - --with-zlib=system
+      - --with-giflib=system
+      - --with-extra-cxxflags=-O2 -g -Wno-error -std=gnu++98 -fno-delete-null-pointer-checks -fno-lifetime-dse -fcommon
+      - --with-extra-cflags=-O2 -g -fstack-protector-strong -Wno-error -fno-delete-null-pointer-checks -fno-lifetime-dse -fcommon
+      - --with-extra-ldflags=-Wl,-z,relro -Wl,-z,now
+      - --with-milestone=fcs
+      - --with-update-version=322
+      - --with-build-number=b06
+    make-args:
+      - JAVAC_FLAGS=-g
+      - LOG=trace
+      - WARNINGS_ARE_ERRORS=-Wno-error
+      - CFLAGS_WARNINGS_ARE_ERRORS=-Wno-error
+      - images
+    sources:
+      - type: git
+        url: https://github.com/adoptium/jdk8u.git
+        tag: jdk8u322-b06
+      - type: shell
+        commands:
+          - chmod a+x configure
+  - name: maven
+    buildsystem: simple
+    cleanup:
+      - '*.cmd'
+    sources:
+      - type: file
+        url: http://archive.apache.org/dist/maven/maven-3/3.8.4/binaries/apache-maven-3.8.4-bin.tar.gz
+        dest-filename: apache-maven-bin.tar.gz
+        sha512: a9b2d825eacf2e771ed5d6b0e01398589ac1bfa4171f36154d1b5787879605507802f699da6f7cfc80732a5282fd31b28e4cd6052338cbef0fa1358b48a5e3c8
+    build-commands:
+      - mkdir -p $FLATPAK_DEST/maven
+      - tar xf apache-maven-bin.tar.gz --strip-components=1 --exclude=jansi-native --directory=$FLATPAK_DEST/maven
+      - ln -s $FLATPAK_DEST/maven/bin/mvn $FLATPAK_DEST/maven/bin/mvnDebug $FLATPAK_DEST/bin
+  - name: scripts
+    buildsystem: simple
+    sources:
+      - type: script
+        commands:
+          - mkdir -p /app/jre
+          - cd /usr/lib/sdk/openjdk8/jvm/java-8-openjdk
+          - cp -ra * /app/jre
+          - rm -rf /app/jre/src.zip /app/jre/include /app/jre/demo /app/jre/sample
+        dest-filename: install.sh
+      - type: script
+        commands:
+          - mkdir -p /app/jdk
+          - cd /usr/lib/sdk/openjdk8/jvm/java-8-openjdk
+          - cp -ra * /app/jdk
+        dest-filename: installjdk.sh
+      - type: script
+        commands:
+          - export JAVA_HOME=/usr/lib/sdk/openjdk8/jvm/java-8-openjdk
+          - export PATH=$PATH:/usr/lib/sdk/openjdk8/bin
+        dest-filename: enable.sh
+    build-commands:
+      - (cd /usr/lib/sdk/openjdk8/jvm && ln -s openjdk-1.8.0* java-8-openjdk)
+      - cp enable.sh install.sh installjdk.sh /usr/lib/sdk/openjdk8/
+  - name: appdata
+    buildsystem: simple
+    build-commands:
+      - mkdir -p ${FLATPAK_DEST}/share/appdata
+      - cp org.freedesktop.Sdk.Extension.openjdk8.appdata.xml ${FLATPAK_DEST}/share/appdata
+      - appstream-compose --basename=org.freedesktop.Sdk.Extension.openjdk8 --prefix=${FLATPAK_DEST} --origin=flatpak org.freedesktop.Sdk.Extension.openjdk8
+    sources:
+      - type: file
+        path: org.freedesktop.Sdk.Extension.openjdk8.appdata.xml
