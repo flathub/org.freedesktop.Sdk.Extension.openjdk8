@@ -70,9 +70,9 @@ modules:
       - '*.cmd'
     sources:
       - type: file
-        url: http://archive.apache.org/dist/maven/maven-3/3.8.3/binaries/apache-maven-3.8.3-bin.tar.gz
+        url: http://archive.apache.org/dist/maven/maven-3/3.8.5/binaries/apache-maven-3.8.5-bin.tar.gz
         dest-filename: apache-maven-bin.tar.gz
-        sha512: 1c12a5df43421795054874fd54bb8b37d242949133b5bf6052a063a13a93f13a20e6e9dae2b3d85b9c7034ec977bbc2b6e7f66832182b9c863711d78bfe60faa
+        sha512: 89ab8ece99292476447ef6a6800d9842bbb60787b9b8a45c103aa61d2f205a971d8c3ddfb8b03e514455b4173602bd015e82958c0b3ddc1728a57126f773c743
     build-commands:
       - mkdir -p $FLATPAK_DEST/maven
       - tar xf apache-maven-bin.tar.gz --strip-components=1 --exclude=jansi-native --directory=$FLATPAK_DEST/maven
