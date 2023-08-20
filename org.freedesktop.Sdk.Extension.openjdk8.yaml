@@ -1,7 +1,7 @@
 id: org.freedesktop.Sdk.Extension.openjdk8
-branch: '22.08'
+branch: '23.08'
 runtime: org.freedesktop.Sdk
-runtime-version: '22.08'
+runtime-version: '23.08'
 build-extension: true
 sdk: org.freedesktop.Sdk
 separate-locales: false
@@ -25,14 +25,14 @@ modules:
         dest: bootstrap-java
         only-arches:
           - aarch64
-        url: https://github.com/adoptium/temurin8-binaries/releases/download/jdk8u345-b01/OpenJDK8U-jdk_aarch64_linux_hotspot_8u345b01.tar.gz
-        sha256: c1965fb24dded7d7944e2da36cd902adf3b7b1d327aaa21ea507cff00a5a0090
+        url: https://github.com/adoptium/temurin8-binaries/releases/download/jdk8u382-b05/OpenJDK8U-jdk_aarch64_linux_hotspot_8u382b05.tar.gz
+        sha256: 0951398197b7bef39ab987b59c22852812ee2c2da6549953eed7fced4c08e13d
       - type: archive
         dest: bootstrap-java
         only-arches:
           - x86_64
-        url: https://github.com/adoptium/temurin8-binaries/releases/download/jdk8u345-b01/OpenJDK8U-jdk_x64_linux_hotspot_8u345b01.tar.gz
-        sha256: ed6c9db3719895584fb1fd69fc79c29240977675f26631911c5a1dbce07b7d58
+        url: https://github.com/adoptium/temurin8-binaries/releases/download/jdk8u382-b05/OpenJDK8U-jdk_x64_linux_hotspot_8u382b05.tar.gz
+        sha256: 789ad24dc0d9618294e3ba564c9bfda9d3f3a218604350e0ce0381bbc8f28db3
     build-commands:
       - mv bootstrap-java $FLATPAK_DEST/
   - name: java
