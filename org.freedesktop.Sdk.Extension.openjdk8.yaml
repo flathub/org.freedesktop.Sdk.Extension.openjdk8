@@ -1,7 +1,7 @@
 id: org.freedesktop.Sdk.Extension.openjdk8
-branch: '22.08'
+branch: '23.08'
 runtime: org.freedesktop.Sdk
-runtime-version: '22.08'
+runtime-version: '23.08'
 build-extension: true
 sdk: org.freedesktop.Sdk
 separate-locales: false
@@ -25,14 +25,14 @@ modules:
         dest: bootstrap-java
         only-arches:
           - aarch64
-        url: https://github.com/adoptium/temurin8-binaries/releases/download/jdk8u345-b01/OpenJDK8U-jdk_aarch64_linux_hotspot_8u345b01.tar.gz
-        sha256: c1965fb24dded7d7944e2da36cd902adf3b7b1d327aaa21ea507cff00a5a0090
+        url: https://github.com/adoptium/temurin8-binaries/releases/download/jdk8u382-b05/OpenJDK8U-jdk_aarch64_linux_hotspot_8u382b05.tar.gz
+        sha256: 0951398197b7bef39ab987b59c22852812ee2c2da6549953eed7fced4c08e13d
       - type: archive
         dest: bootstrap-java
         only-arches:
           - x86_64
-        url: https://github.com/adoptium/temurin8-binaries/releases/download/jdk8u345-b01/OpenJDK8U-jdk_x64_linux_hotspot_8u345b01.tar.gz
-        sha256: ed6c9db3719895584fb1fd69fc79c29240977675f26631911c5a1dbce07b7d58
+        url: https://github.com/adoptium/temurin8-binaries/releases/download/jdk8u382-b05/OpenJDK8U-jdk_x64_linux_hotspot_8u382b05.tar.gz
+        sha256: 789ad24dc0d9618294e3ba564c9bfda9d3f3a218604350e0ce0381bbc8f28db3
     build-commands:
       - mv bootstrap-java $FLATPAK_DEST/
   - name: java
@@ -71,9 +71,9 @@ modules:
       - '*.cmd'
     sources:
       - type: file
-        url: http://archive.apache.org/dist/maven/maven-3/3.8.8/binaries/apache-maven-3.8.8-bin.tar.gz
+        url: http://archive.apache.org/dist/maven/maven-3/3.9.4/binaries/apache-maven-3.9.4-bin.tar.gz
         dest-filename: apache-maven-bin.tar.gz
-        sha512: 332088670d14fa9ff346e6858ca0acca304666596fec86eea89253bd496d3c90deae2be5091be199f48e09d46cec817c6419d5161fb4ee37871503f472765d00
+        sha512: deaa39e16b2cf20f8cd7d232a1306344f04020e1f0fb28d35492606f647a60fe729cc40d3cba33e093a17aed41bd161fe1240556d0f1b80e773abd408686217e
     build-commands:
       - mkdir -p $FLATPAK_DEST/maven
       - tar xf apache-maven-bin.tar.gz --strip-components=1 --exclude=jansi-native --directory=$FLATPAK_DEST/maven
