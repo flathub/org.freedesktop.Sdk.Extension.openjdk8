@@ -50,8 +50,8 @@ modules:
       - --with-extra-cflags=-O2 -g -fstack-protector-strong -Wno-error -fno-delete-null-pointer-checks -fno-lifetime-dse -fcommon
       - --with-extra-ldflags=-Wl,-z,relro -Wl,-z,now
       - --with-milestone=fcs
-      - --with-update-version=382
-      - --with-build-number=b05
+      - --with-update-version=392
+      - --with-build-number=b08
     make-args:
       - JAVAC_FLAGS=-g
       - LOG=trace
@@ -61,7 +61,7 @@ modules:
     sources:
       - type: git
         url: 'https://github.com/adoptium/jdk8u.git'
-        tag: jdk8u382-b05
+        tag: jdk8u392-b08
       - type: shell
         commands:
           - chmod a+x configure
