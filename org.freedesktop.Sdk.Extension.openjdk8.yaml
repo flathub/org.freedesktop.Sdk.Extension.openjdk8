@@ -50,8 +50,6 @@ modules:
       - --with-extra-cflags=-O2 -g -fstack-protector-strong -Wno-error -fno-delete-null-pointer-checks -fno-lifetime-dse -fcommon
       - --with-extra-ldflags=-Wl,-z,relro -Wl,-z,now
       - --with-milestone=fcs
-      - --with-update-version=392
-      - --with-build-number=b08
     make-args:
       - JAVAC_FLAGS=-g
       - LOG=trace
@@ -60,11 +58,18 @@ modules:
       - images
     sources:
       - type: git
-        url: 'https://github.com/adoptium/jdk8u.git'
+        url: https://github.com/adoptium/jdk8u.git
         tag: jdk8u392-b08
+        commit: 9499e54ebbab17b0f5e48be27c0c7f90806a3c40
+        x-checker-data:
+          type: json
+          url: https://api.github.com/repos/adoptium/temurin8-binaries/releases/latest
+          is-main-source: true
+          tag-query: .tag_name
       - type: shell
         commands:
           - chmod a+x configure
+          - git describe --match "jdk8u*-b*" HEAD | sed -e 's/jdk8u[[:digit:]]\+-\(b[[:digit:]]\+\)/JDK_BUILD_NUMBER=\1/' >> common/autoconf/version-numbers
   - name: maven
     buildsystem: simple
     cleanup:
@@ -74,6 +79,14 @@ modules:
         url: http://archive.apache.org/dist/maven/maven-3/3.8.8/binaries/apache-maven-3.8.8-bin.tar.gz
         dest-filename: apache-maven-bin.tar.gz
         sha512: 332088670d14fa9ff346e6858ca0acca304666596fec86eea89253bd496d3c90deae2be5091be199f48e09d46cec817c6419d5161fb4ee37871503f472765d00
+        x-checker-data:
+          type: anitya
+          project-id: 1894
+          stable-only: true
+          is-main-source: false
+          url-template: http://archive.apache.org/dist/maven/maven-3/$version/binaries/apache-maven-$version-bin.tar.gz
+          versions:
+            <: 3.9.0
     build-commands:
       - mkdir -p $FLATPAK_DEST/maven
       - tar xf apache-maven-bin.tar.gz --strip-components=1 --exclude=jansi-native --directory=$FLATPAK_DEST/maven
