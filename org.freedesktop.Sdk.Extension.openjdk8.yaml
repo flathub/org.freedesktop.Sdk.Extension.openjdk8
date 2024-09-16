@@ -5,7 +5,6 @@ runtime-version: '24.08'
 build-extension: true
 sdk: org.freedesktop.Sdk
 separate-locales: false
-appstream-compose: false
 cleanup:
   - /share/info
   - /share/man
@@ -120,7 +119,6 @@ modules:
     build-commands:
       - mkdir -p ${FLATPAK_DEST}/share/appdata
       - cp org.freedesktop.Sdk.Extension.openjdk8.appdata.xml ${FLATPAK_DEST}/share/appdata
-      - appstream-compose --basename=org.freedesktop.Sdk.Extension.openjdk8 --prefix=${FLATPAK_DEST} --origin=flatpak org.freedesktop.Sdk.Extension.openjdk8
     sources:
       - type: file
         path: org.freedesktop.Sdk.Extension.openjdk8.appdata.xml
