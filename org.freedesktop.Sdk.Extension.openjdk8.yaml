@@ -1,11 +1,10 @@
 id: org.freedesktop.Sdk.Extension.openjdk8
-branch: '23.08'
+branch: '24.08'
 runtime: org.freedesktop.Sdk
-runtime-version: '23.08'
+runtime-version: '24.08'
 build-extension: true
 sdk: org.freedesktop.Sdk
 separate-locales: false
-appstream-compose: false
 cleanup:
   - /share/info
   - /share/man
@@ -78,6 +77,10 @@ modules:
           url: https://api.github.com/repos/adoptium/temurin8-binaries/releases/latest
           is-main-source: true
           tag-query: .tag_name
+      - type: patch
+        paths:
+          - patches/0001-Fix-Wint-conversion.patch
+          - patches/0002-Fix-Wincompatible-pointer-types.patch
       - type: shell
         commands:
           - chmod a+x configure
@@ -132,7 +135,6 @@ modules:
     build-commands:
       - mkdir -p ${FLATPAK_DEST}/share/appdata
       - cp org.freedesktop.Sdk.Extension.openjdk8.appdata.xml ${FLATPAK_DEST}/share/appdata
-      - appstream-compose --basename=org.freedesktop.Sdk.Extension.openjdk8 --prefix=${FLATPAK_DEST} --origin=flatpak org.freedesktop.Sdk.Extension.openjdk8
     sources:
       - type: file
         path: org.freedesktop.Sdk.Extension.openjdk8.appdata.xml
