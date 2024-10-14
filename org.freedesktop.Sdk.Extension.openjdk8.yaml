@@ -26,13 +26,25 @@ modules:
         only-arches:
           - aarch64
         url: https://github.com/adoptium/temurin8-binaries/releases/download/jdk8u382-b05/OpenJDK8U-jdk_aarch64_linux_hotspot_8u382b05.tar.gz
+        dest-filename: java-openjdk.tar.gz
         sha256: 0951398197b7bef39ab987b59c22852812ee2c2da6549953eed7fced4c08e13d
+        x-checker-data:
+          type: json
+          url: https://api.github.com/repos/adoptium/temurin8-binaries/releases/latest
+          version-query: .tag_name
+          url-query: .assets[] | select(.name | startswith("OpenJDK8U-jdk_aarch64_linux_hotspot_") and endswith(".tar.gz")).browser_download_url
       - type: archive
         dest: bootstrap-java
         only-arches:
           - x86_64
         url: https://github.com/adoptium/temurin8-binaries/releases/download/jdk8u382-b05/OpenJDK8U-jdk_x64_linux_hotspot_8u382b05.tar.gz
+        dest-filename: java-openjdk.tar.gz
         sha256: 789ad24dc0d9618294e3ba564c9bfda9d3f3a218604350e0ce0381bbc8f28db3
+        x-checker-data:
+          type: json
+          url: https://api.github.com/repos/adoptium/temurin8-binaries/releases/latest
+          version-query: .tag_name
+          url-query: .assets[] | select(.name | startswith("OpenJDK8U-jdk_x64_linux_hotspot_") and endswith(".tar.gz")).browser_download_url
     build-commands:
       - mv bootstrap-java $FLATPAK_DEST/
   - name: java
