@@ -36,9 +36,9 @@ modules:
         dest: bootstrap-java
         only-arches:
           - x86_64
-        url: https://github.com/adoptium/temurin8-binaries/releases/download/jdk8u422-b05/OpenJDK8U-jdk_x64_linux_hotspot_8u422b05.tar.gz
+        url: https://github.com/adoptium/temurin8-binaries/releases/download/jdk8u432-b06/OpenJDK8U-jdk_x64_linux_hotspot_8u432b06.tar.gz
         dest-filename: java-openjdk.tar.gz
-        sha256: 4c6056f6167fae73ace7c3080b78940be5c87d54f5b08894b3517eed1cbb2c06
+        sha256: abaaa90deadf51bd28921453baf2992b3dff6171bb7142f5bdd14ef269f7b245
         x-checker-data:
           type: json
           url: https://api.github.com/repos/adoptium/temurin8-binaries/releases/latest
@@ -70,8 +70,8 @@ modules:
     sources:
       - type: git
         url: https://github.com/adoptium/jdk8u.git
-        tag: jdk8u422-b05
-        commit: 18b3ca58d72881d3b6a89c6f299e26635fd149c4
+        tag: jdk8u432-b06
+        commit: 618917eb093243de2c5d7e83d4688bfe9ad04985
         x-checker-data:
           type: json
           url: https://api.github.com/repos/adoptium/temurin8-binaries/releases/latest
