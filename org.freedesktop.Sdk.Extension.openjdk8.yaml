@@ -78,6 +78,9 @@ modules:
           url: https://api.github.com/repos/adoptium/temurin8-binaries/releases/latest
           is-main-source: true
           tag-query: .tag_name
+      - type: patch
+        paths:
+          - patches/0001-ConfigureNotify-behavior-has-changed-in-KWin-6.2.patch
       - type: shell
         commands:
           - chmod a+x configure
