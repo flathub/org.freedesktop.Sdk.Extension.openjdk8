@@ -1,7 +1,7 @@
 id: org.freedesktop.Sdk.Extension.openjdk8
-branch: '24.08'
+branch: '25.08'
 runtime: org.freedesktop.Sdk
-runtime-version: '24.08'
+runtime-version: '25.08'
 build-extension: true
 sdk: org.freedesktop.Sdk
 separate-locales: false
@@ -58,7 +58,7 @@ modules:
       - --with-zlib=system
       - --with-giflib=system
       - --with-extra-cxxflags=-O2 -g -Wno-error -std=gnu++98 -fno-delete-null-pointer-checks -fno-lifetime-dse -fcommon
-      - --with-extra-cflags=-O2 -g -fstack-protector-strong -Wno-error -fno-delete-null-pointer-checks -fno-lifetime-dse -fcommon
+      - --with-extra-cflags=-O2 -g -std=gnu99 -fstack-protector-strong -Wno-error -fno-delete-null-pointer-checks -fno-lifetime-dse -fcommon
       - --with-extra-ldflags=-Wl,-z,relro -Wl,-z,now
       - --with-milestone=fcs
     make-args:
@@ -82,6 +82,7 @@ modules:
           - patches/0001-Fix-Wint-conversion.patch
           - patches/0002-Fix-Wincompatible-pointer-types.patch
           - patches/0003-ConfigureNotify-behavior-has-changed-in-KWin-6.2.patch
+          - patches/0004-Build-failure-with-glibc-2.42-due-to-uabs-name.patch
       - type: shell
         commands:
           - chmod a+x configure
