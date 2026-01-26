@@ -5,16 +5,20 @@ runtime-version: '25.08'
 build-extension: true
 sdk: org.freedesktop.Sdk
 separate-locales: false
+
 cleanup:
   - /share/info
   - /share/man
+
 build-options:
   no-debuginfo: true
   strip: true
   prefix: /usr/lib/sdk/openjdk8
   env:
     V: '1'
+
 modules:
+  # Boot JDK requirements: https://htmlpreview.github.io/?https://raw.githubusercontent.com/openjdk/jdk/master/doc/building.html#boot-jdk-requirements
   - name: bootstrap-java
     cleanup:
       - '*'
@@ -46,6 +50,7 @@ modules:
           url-query: .assets[] | select(.name | startswith("OpenJDK8U-jdk_x64_linux_hotspot_") and endswith(".tar.gz")).browser_download_url
     build-commands:
       - mv bootstrap-java $FLATPAK_DEST/
+
   - name: java
     buildsystem: autotools
     no-parallel-make: true
@@ -87,6 +92,8 @@ modules:
         commands:
           - chmod a+x configure
           - git describe --match "jdk8u*-b*" HEAD | sed -e 's/jdk8u[[:digit:]]\+-\(b[[:digit:]]\+\)/JDK_BUILD_NUMBER=\1/' >> common/autoconf/version-numbers
+
+  # Java version requirements for Maven: https://maven.apache.org/docs/history.html
   - name: maven
     buildsystem: simple
     cleanup:
@@ -108,6 +115,7 @@ modules:
       - mkdir -p $FLATPAK_DEST/maven
       - tar xf apache-maven-bin.tar.gz --strip-components=1 --exclude=jansi-native --directory=$FLATPAK_DEST/maven
       - ln -s $FLATPAK_DEST/maven/bin/mvn $FLATPAK_DEST/maven/bin/mvnDebug $FLATPAK_DEST/bin
+
   - name: scripts
     buildsystem: simple
     sources:
@@ -132,6 +140,7 @@ modules:
     build-commands:
       - (cd /usr/lib/sdk/openjdk8/jvm && ln -s openjdk-1.8.0* java-8-openjdk)
       - cp enable.sh install.sh installjdk.sh /usr/lib/sdk/openjdk8/
+
   - name: appdata
     buildsystem: simple
     build-commands:
