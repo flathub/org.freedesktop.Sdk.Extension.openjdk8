@@ -65,8 +65,8 @@ modules:
     sources:
       - type: git
         url: https://github.com/adoptium/jdk8u.git
-        tag: jdk8u482-b08
-        commit: cea3cd4c1d7aa70e998d45ca2e419793a550321e
+        tag: jdk8u492-b09
+        commit: 24fbffc3f77f72e322a962c2c9eb7ba538eb52e1
         x-checker-data:
           type: json
           url: https://api.github.com/repos/adoptium/temurin8-binaries/releases/latest
@@ -74,7 +74,6 @@ modules:
           tag-query: .tag_name
       - type: patch
         paths:
-          - patches/0001-Fix-Wint-conversion.patch
           - patches/0002-Fix-Wincompatible-pointer-types.patch
           - patches/0003-ConfigureNotify-behavior-has-changed-in-KWin-6.2.patch
       - type: shell
@@ -89,9 +88,9 @@ modules:
       - '*.cmd'
     sources:
       - type: file
-        url: http://archive.apache.org/dist/maven/maven-3/3.9.12/binaries/apache-maven-3.9.12-bin.tar.gz
+        url: http://archive.apache.org/dist/maven/maven-3/3.9.15/binaries/apache-maven-3.9.15-bin.tar.gz
         dest-filename: apache-maven-bin.tar.gz
-        sha512: 0a1be79f02466533fc1a80abbef8796e4f737c46c6574ede5658b110899942a94db634477dfd3745501c80aef9aac0d4f841d38574373f7e2d24cce89d694f70
+        sha512: 33d81e0ec785f0207e3e5e3ffb61863e1dca5784c15ac3fb5ff105f69cffbea484eb8d473ea60467a63f7b0570eef8622f2fed8eee96acbe668aa313391cddb3
         x-checker-data:
           type: anitya
           project-id: 1894
