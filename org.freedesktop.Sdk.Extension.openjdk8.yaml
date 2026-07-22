@@ -74,7 +74,6 @@ modules:
           tag-query: .tag_name
       - type: patch
         paths:
-          - patches/0002-Fix-Wincompatible-pointer-types.patch
           - patches/0003-ConfigureNotify-behavior-has-changed-in-KWin-6.2.patch
       - type: shell
         commands:
