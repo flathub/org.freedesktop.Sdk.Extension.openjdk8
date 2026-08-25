@@ -65,8 +65,8 @@ modules:
     sources:
       - type: git
         url: https://github.com/adoptium/jdk8u.git
-        tag: jdk8u502-b07
-        commit: 7373384725418fa645fb4508ec05a869bc7fc3e7
+        tag: jdk8u504-b01
+        commit: 4efe36434f44bafb854e602ccbbe1b5696fce1a2
         x-checker-data:
           type: json
           url: https://api.github.com/repos/adoptium/temurin8-binaries/releases/latest
